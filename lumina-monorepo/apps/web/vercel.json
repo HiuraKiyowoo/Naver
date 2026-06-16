@@ -1,0 +1,7 @@
+{
+  "framework": "nextjs",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://api-lumina.vercel.app",
+    "NEXT_PUBLIC_SITE_URL": "https://lumina.vercel.app"
+  }
+}
