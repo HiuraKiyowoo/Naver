@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .hero-slide {
+    backface-visibility: hidden;
+  }
+}
