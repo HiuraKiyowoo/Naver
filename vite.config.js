@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/anime': {
-        target: 'https://www.sankavollerei.com',
+      '/api': {
+        target: 'http://localhost:3001',
         changeOrigin: true,
       }
     }
