@@ -92,8 +92,8 @@ const Browse = () => {
                 novels.map((novel, i) => (
                   <div key={novel.slug || i} onClick={() => navigate(`/novel/${novel.slug}`)} className="w-full flex flex-col gap-2 group cursor-pointer active:scale-95 transition-all">
                     <div className="relative aspect-[3/4.5] overflow-hidden bg-[#16161a] rounded-sm shadow-xl">
-                      {novel.cover
-                        ? <img src={novel.cover} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                      {novel.image
+                        ? <img src={novel.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
                         : <div className="w-full h-full flex items-center justify-center text-white/10 text-3xl font-black">{novel.title?.[0]}</div>
                       }
                       {novel.rating && <div className="absolute top-1 right-1 bg-[#F6CF80] text-black text-[7px] font-black px-1 py-0.5 rounded-sm">★{novel.rating}</div>}

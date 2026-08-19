@@ -15,8 +15,8 @@ const CardSkeleton = () => (
 const NovelCard = ({ item, onClick }) => (
   <div onClick={onClick} className="min-w-[105px] w-[105px] group cursor-pointer snap-start active:scale-95 flex flex-col gap-2">
     <div className="relative aspect-[3/4.5] overflow-hidden bg-[#16161a] rounded-sm shadow-xl">
-      {item.cover
-        ? <img src={item.cover} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+      {item.image
+        ? <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
         : <div className="w-full h-full flex items-center justify-center text-white/10 text-2xl font-black">{item.title?.[0]}</div>
       }
       {item.type && <div className="absolute top-1 left-1 bg-black/70 text-white/80 text-[7px] font-black px-1 py-0.5 rounded-sm">{item.type}</div>}
@@ -55,7 +55,7 @@ const Home = () => {
     })();
   }, []);
 
-  const heroItems = (home?.items || []).filter(i => i.cover).slice(0, 6);
+  const heroItems = (home?.items || []).filter(i => i.image).slice(0, 6);
 
   useEffect(() => {
     if (heroItems.length > 1) {
@@ -108,10 +108,10 @@ const Home = () => {
           <div className="w-full h-full bg-[#16161a] relative overflow-hidden"><Shimmer /></div>
         ) : (
           <div key={hero.slug} className="w-full h-full relative">
-            <img src={hero.cover} className="w-full h-full object-cover opacity-40" />
+            <img src={hero.image} className="w-full h-full object-cover opacity-40" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-[#0a0a0c]/50 to-transparent" />
             <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 flex items-end gap-4 z-10 max-w-2xl">
-              <img src={hero.cover} className="w-20 md:w-32 aspect-[3/4.2] object-cover rounded-md shadow-2xl shrink-0" />
+              <img src={hero.image} className="w-20 md:w-32 aspect-[3/4.2] object-cover rounded-md shadow-2xl shrink-0" />
               <div className="flex flex-col gap-1 mb-1">
                 {hero.type && <span className="text-[#F6CF80] text-[9px] font-black uppercase tracking-widest">{hero.type}</span>}
                 <h2 className="text-base md:text-2xl font-black text-white leading-tight line-clamp-2">{hero.title}</h2>

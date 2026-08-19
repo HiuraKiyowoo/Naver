@@ -80,8 +80,8 @@ const Explore = () => {
             results.map((item, i) => (
               <div key={item.slug || i} onClick={() => navigate(`/novel/${item.slug}`)} className="w-full flex flex-col gap-2 group cursor-pointer active:scale-95 transition-all">
                 <div className="relative aspect-[3/4.5] overflow-hidden bg-[#16161a] rounded-sm shadow-xl">
-                  {item.cover
-                    ? <img src={item.cover} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                  {item.image
+                    ? <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
                     : <div className="w-full h-full flex items-center justify-center text-white/10 text-3xl font-black">{item.title?.[0]}</div>
                   }
                   {item.rating && <div className="absolute top-1 right-1 bg-[#F6CF80] text-black text-[7px] font-black px-1 py-0.5 rounded-sm">★{item.rating}</div>}
