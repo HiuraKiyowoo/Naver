@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { getDetail, getChapters } from '../lib/api';
 
 const Shimmer = () => <div className="absolute inset-0 w-[200%] animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent" style={{transform:'translate3d(-100%,0,0) skewX(-20deg)'}} />;
+const slugOf = (url) => { try { return new URL(url).pathname.split("/").filter(Boolean).pop() || url; } catch { return url; } };
 
 const Novel = () => {
   const { slug } = useParams();
@@ -80,7 +81,7 @@ const Novel = () => {
                 {novel.chapterCount && <span className="text-[8px] font-black px-2 py-0.5 rounded-sm bg-white/10 text-white/60">{novel.chapterCount} Chapter</span>}
               </div>
               {novel.authors?.length > 0 && <p className="text-white/40 text-[10px] font-bold">Author: {novel.authors.map(a => a.title).join(', ')}</p>}
-              {novel.release && <p className="text-white/30 text-[10px] font-bold">Release: {novel.release}</p>}
+              {novel.release?.length > 0 && <p className="text-white/30 text-[10px] font-bold">Release: {novel.release.map(r => r.title).join(", ")}</p>}
               <div className="flex gap-2 justify-center md:justify-start mt-2 flex-wrap">
                 {novel.firstChapter && (
                   <button onClick={() => navigate(`/read?url=${encodeURIComponent(novel.firstChapter)}`)} className="h-9 px-5 bg-[#F6CF80] hover:bg-[#ebd59b] text-black rounded-lg font-black text-xs flex items-center gap-2 transition-colors">
@@ -126,7 +127,7 @@ const Novel = () => {
                 <h3 className="text-white font-black text-sm uppercase mb-3">Genre</h3>
                 <div className="flex flex-wrap gap-2">
                   {novel.genres.map(g => (
-                    <button key={g.slug} onClick={() => navigate(`/browse?tab=genre&slug=${g.slug}`)} className="px-3 py-1.5 bg-white/5 border border-white/10 text-white/60 text-[10px] font-bold rounded-lg hover:border-[#F6CF80]/40 hover:text-[#F6CF80] transition-all">
+                    <button key={g.url} onClick={() => navigate(`/browse?tab=genre&slug=${slugOf(g.url)}`)} className="px-3 py-1.5 bg-white/5 border border-white/10 text-white/60 text-[10px] font-bold rounded-lg hover:border-[#F6CF80]/40 hover:text-[#F6CF80] transition-all">
                       {g.title}
                     </button>
                   ))}
@@ -139,7 +140,7 @@ const Novel = () => {
                 <h3 className="text-white font-black text-sm uppercase mb-3">Tag</h3>
                 <div className="flex flex-wrap gap-2">
                   {novel.tags.map(t => (
-                    <button key={t.slug} onClick={() => navigate(`/browse?tab=tag&slug=${t.slug}`)} className="px-3 py-1.5 bg-white/5 border border-white/10 text-white/50 text-[10px] font-bold rounded-lg hover:border-white/30 hover:text-white transition-all">
+                    <button key={t.url} onClick={() => navigate(`/browse?tab=tag&slug=${slugOf(t.url)}`)} className="px-3 py-1.5 bg-white/5 border border-white/10 text-white/50 text-[10px] font-bold rounded-lg hover:border-white/30 hover:text-white transition-all">
                       #{t.title}
                     </button>
                   ))}
@@ -152,7 +153,7 @@ const Novel = () => {
                 <h3 className="text-white font-black text-sm uppercase mb-3">Author</h3>
                 <div className="flex flex-wrap gap-2">
                   {novel.authors.map(a => (
-                    <button key={a.slug} onClick={() => navigate(`/browse?tab=author&slug=${a.slug}`)} className="px-3 py-1.5 bg-white/5 border border-white/10 text-white/60 text-[10px] font-bold rounded-lg hover:border-[#F6CF80]/40 hover:text-[#F6CF80] transition-all">
+                    <button key={a.url} onClick={() => navigate(`/browse?tab=author&slug=${slugOf(a.url)}`)} className="px-3 py-1.5 bg-white/5 border border-white/10 text-white/60 text-[10px] font-bold rounded-lg hover:border-[#F6CF80]/40 hover:text-[#F6CF80] transition-all">
                       {a.title}
                     </button>
                   ))}
