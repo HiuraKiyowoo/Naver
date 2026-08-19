@@ -15,7 +15,7 @@ export const getArchive    = (opts = {})             => get('/archive', opts);
 export const search        = (q)                     => get('/search', { q });
 export const getTaxonomies = ()                      => get('/taxonomies');
 export const getDetail     = (slug)                  => get('/detail', { slug });
-export const getChapters   = (slug, page = 1)        => get('/chapters', { slug, page });
+export const getChapters   = (slug, page = 1)        => get('/chapter', { slug, page });
 export const getChapter    = (url)                   => get('/chapter', { url });
 export const getHover      = (id)                    => get('/hover', { id });
 export const getReadingNav = (manga, chapter, volume)=> get('/reading-nav', { manga, chapter, volume });
